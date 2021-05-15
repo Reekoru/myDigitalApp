@@ -14,47 +14,35 @@ import {
   Dimensions,
   Platform,
 } from "react-native";
+import { useDeviceOrientation } from "@react-native-community/hooks";
 
 export default function Home() {
-  /**
-   * Returns true if the screen is in portrait mode
-   */
-  const isPortrait = () => {
-    const dim = Dimensions.get("screen");
-    return dim.height >= dim.width;
-  };
-
-  /**
-   * Returns true of the screen is in landscape mode
-   */
-  const isLandscape = () => {
-    const dim = Dimensions.get("screen");
-    return dim.width >= dim.height;
-  };
-
-  this.state = {
-    orientation: isPortrait() ? "portrait" : "landscape",
-  };
-
-  // Event Listener for orientation changes
-  Dimensions.addEventListener("change", () => {
-    this.setState({
-      orientation: Platform.isPortrait() ? "portrait" : "landscape",
-    });
-  });
-
-  if (this.state.orientation === "portrait") {
-    console.log(1);
-  } else if (this.state.orientation === "landscape") {
-    console.log(0);
-  }
+  console.log(useDeviceOrientation());
+  const { portrait } = useDeviceOrientation();
   return (
-    <View style={styles.container}>
+    <View
+      style={StyleSheet.compose(styles.container, {
+        alignItems: portrait ? "center" : "stretch",
+      })}
+    >
+      <Text style={styles.headerText}>WELCOME</Text>
       <ScrollView
-        style={styles.content}
-        contentContainerStyle={{ alignItems: "center" }}
+        /* check if phone is landscape or portrait*/
+        horizontal={portrait ? "true" : "false"}
+        vertical={portrait ? "false" : "true"}
+        contentContainerStyle={StyleSheet.compose(styles.content, {
+          flexDirection: portrait ? "column" : "row",
+        })}
       >
-        <Text style={styles.headerText}>WELCOME</Text>
+        <Image
+          style={styles.tabs}
+          source={{
+            width: 300,
+            height: 200,
+            uri: "https://picsum.photos/300/200",
+          }}
+        />
+
         <Image
           style={styles.tabs}
           source={{
@@ -82,7 +70,6 @@ export default function Home() {
           }}
         />
       </ScrollView>
-
       <View style={styles.footer}></View>
     </View>
   );
@@ -92,18 +79,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgb(50, 50, 50)",
-    paddingTop: 50,
+    alignItems: "center",
+  },
+
+  content: {
+    alignItems: "center",
   },
 
   footer: {
     backgroundColor: "rgb(40, 40, 40)",
-    height: "10%",
+    height: 50,
     width: "100%",
     flexDirection: "row",
-    alignItems: "center",
+    position: "sticky",
+    bottom: 0,
   },
 
   headerText: {
+    margin: "auto",
+    marginTop: 50,
     fontWeight: "bold",
     fontSize: 20,
     color: "white",
@@ -111,7 +105,7 @@ const styles = StyleSheet.create({
   },
 
   tabs: {
-    marginVertical: 25,
+    margin: 15,
     borderRadius: 15,
   },
 

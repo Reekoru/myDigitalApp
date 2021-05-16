@@ -3,20 +3,18 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   ScrollView,
   SafeAreaView,
   Alert,
   TextInput,
   Image,
-  Header,
-  Dimensions,
-  Platform,
 } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
+import Tab from "../components/tabs.js";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Home() {
+export default function Home({ navigation }) {
   console.log(useDeviceOrientation());
   const { portrait } = useDeviceOrientation();
   return (
@@ -25,50 +23,31 @@ export default function Home() {
         alignItems: portrait ? "center" : "stretch",
       })}
     >
-      <Text style={styles.headerText}>WELCOME</Text>
       <ScrollView
         /* check if phone is landscape or portrait*/
-        horizontal={portrait ? "true" : "false"}
-        vertical={portrait ? "false" : "true"}
+        horizontal={portrait ? false : true}
+        vertical={portrait ? true : false}
         contentContainerStyle={StyleSheet.compose(styles.content, {
           flexDirection: portrait ? "column" : "row",
         })}
       >
-        <Image
-          style={styles.tabs}
-          source={{
-            width: 300,
-            height: 200,
-            uri: "https://picsum.photos/300/200",
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Tuner");
+            console.log("Pressed Tab 1");
           }}
-        />
-
-        <Image
-          style={styles.tabs}
-          source={{
-            width: 300,
-            height: 200,
-            uri: "https://picsum.photos/300/200",
-          }}
-        />
-
-        <Image
-          style={styles.tabs}
-          source={{
-            width: 300,
-            height: 200,
-            uri: "https://picsum.photos/300/200",
-          }}
-        />
-
-        <Image
-          style={styles.tabs}
-          source={{
-            width: 300,
-            height: 200,
-            uri: "https://picsum.photos/300/200",
-          }}
-        />
+        >
+          <Tab imgUri={"https://picsum.photos/300/200"} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Tab imgUri={"https://picsum.photos/300/200"} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Tab imgUri={"https://picsum.photos/300/200"} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Tab imgUri={"https://picsum.photos/300/200"} />
+        </TouchableOpacity>
       </ScrollView>
       <View style={styles.footer}></View>
     </View>
@@ -91,17 +70,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: "100%",
     flexDirection: "row",
-    position: "sticky",
-    bottom: 0,
-  },
-
-  headerText: {
-    margin: "auto",
-    marginTop: 50,
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "white",
-    fontFamily: "Copperplate",
   },
 
   tabs: {

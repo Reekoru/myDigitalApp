@@ -23,6 +23,7 @@ export default function Home({ navigation }) {
         alignItems: portrait ? "center" : "stretch",
       })}
     >
+      {/* MAIN CONTENT */}
       <ScrollView
         /* check if phone is landscape or portrait*/
         horizontal={portrait ? false : true}
@@ -31,24 +32,41 @@ export default function Home({ navigation }) {
           flexDirection: portrait ? "column" : "row",
         })}
       >
-        <TouchableOpacity
+        {/* Tabs to go to different screens */}
+        <TouchableOpacity /* Learning tab*/
+          onPress={() => {
+            console.log("Pressed: Guitar");
+          }}
+        >
+          <Tab imgUri={require("../assets/Images/G1.png")} imgTitle="Guitar" />
+        </TouchableOpacity>
+        <TouchableOpacity /*Bass Tab */
+          onPress={() => {
+            console.log("Pressed: Bass");
+          }}
+        >
+          <Tab imgUri={require("../assets/Images/G2.png")} imgTitle="Bass" />
+        </TouchableOpacity>
+        <TouchableOpacity /*Tuner Tab*/
           onPress={() => {
             navigation.navigate("Tuner");
             console.log("Pressed Tab 1");
           }}
         >
-          <Tab imgUri={"https://picsum.photos/300/200"} />
+          <Tab imgUri={require("../assets/Images/G3.png")} imgTitle="Tuner" />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Tab imgUri={"https://picsum.photos/300/200"} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Tab imgUri={"https://picsum.photos/300/200"} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Tab imgUri={"https://picsum.photos/300/200"} />
+        <TouchableOpacity
+          onPress={() => {
+            console.log("Pressed: Settings");
+          }}
+        >
+          <Tab
+            imgUri={require("../assets/Images/G4.png")}
+            imgTitle="Settings"
+          />
         </TouchableOpacity>
       </ScrollView>
+      {/* FOOTER */}
       <View style={styles.footer}></View>
     </View>
   );

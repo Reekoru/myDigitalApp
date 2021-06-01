@@ -1,7 +1,11 @@
+/*
+Author: Enrique
+Version: 4
+*/
+
 import { StatusBar } from "expo-status-bar";
-import Home from "./screens/home.js";
-import Tuner from "./screens/tuner.js";
-import styles from "./styles/styles.js";
+import Home from "./Screens/home.js";
+import TunerScreen from "./Screens/tuner.js";
 
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -22,6 +26,7 @@ export default function App() {
   console.log("App Executed");
   return (
     <NavigationContainer>
+      {/* Add Stack navigator to navigate to different screens*/}
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
@@ -29,10 +34,12 @@ export default function App() {
             backgroundColor: "rgb(50, 50, 50)",
           },
           headerTintColor: "#fff",
+          headerTitleAlign: "center",
         }}
       >
+        {/* Scrrens */}
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Tuner" component={Tuner} />
+        <Stack.Screen name="Tuner" component={TunerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

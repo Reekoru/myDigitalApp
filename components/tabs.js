@@ -22,6 +22,7 @@ export default class Tab extends Component {
               bottom: 0,
               justifyContent: "center",
               alignItems: "center",
+              textAlign: "center",
             }}
           >
             <Text
@@ -32,6 +33,7 @@ export default class Tab extends Component {
                 textShadowColor: "rgba(0, 0, 0, 0.75)",
                 textShadowOffset: { width: 5, height: 5 },
                 textShadowRadius: 10,
+                textAlign: "center",
               }}
             >
               {/*Get title of image */}

@@ -6,9 +6,9 @@ import {
   StyleSheet,
   PermissionsAndroid,
 } from "react-native";
-import Tuner from "../tunerCode";
-import Note from "../note";
-import Meter from "../meter";
+import Tuner from "../../scripts/tunerCode.js";
+import Note from "../../scripts/note.js";
+import Meter from "../../scripts/meter.js";
 
 export default class TunerScreen extends Component {
   state = {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
 export default function GChords() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -16,7 +16,16 @@ export default function GChords() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <Text style={styles.modalText}>
+              Hi! In this section, we will learn the basic chords which can be
+              played in guitar. You will be able to use these chords to play
+              countless of popular songs!
+              {"\n"}
+              {"\n"}
+              Grab your guitar, read, play, review!
+              {"\n"}
+              LET'S DO IT!
+            </Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
@@ -30,7 +39,7 @@ export default function GChords() {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.textStyle}>Show Modal</Text>
+        <Text style={styles.textStyle}>Introduction</Text>
       </Pressable>
     </View>
   );

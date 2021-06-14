@@ -43,7 +43,7 @@ export default class TunerScreen extends Component {
 
   render() {
     return (
-      <View style={style.body}>
+      <View style={style.container}>
         <StatusBar backgroundColor="#000" translucent />
         <Meter cents={this.state.note.cents} />
         <Note {...this.state.note} />
@@ -56,10 +56,11 @@ export default class TunerScreen extends Component {
 }
 
 const style = StyleSheet.create({
-  body: {
+  container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "rgb(50, 50, 50)",
   },
   frequency: {
     fontSize: 28,

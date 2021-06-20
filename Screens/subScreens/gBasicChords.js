@@ -1,10 +1,24 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import {
+  Alert,
+  Modal,
+  StyleSheet,
+  Text,
+  Pressable,
+  View,
+  ScrollView,
+} from "react-native";
+import Orientation from "../../scripts/detectOrientation.js";
+import { RFValue } from "react-native-responsive-fontsize";
+import Chord from "../../components/chord.js";
 
 export default function GChords() {
   const [modalVisible, setModalVisible] = useState(true);
+  // Create a new object to get orientation of screen
+  const orientation = new Orientation();
+  const portrait = orientation.isPortr;
   return (
-    <View style={styles.centeredView}>
+    <View style={styles.container}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -35,23 +49,65 @@ export default function GChords() {
           </View>
         </View>
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
+      <Text
+        style={{ fontSize: RFValue(32), color: "white", textAlign: "center" }}
       >
-        <Text style={styles.textStyle}>Introduction</Text>
-      </Pressable>
+        THE BASIC CHORDS
+      </Text>
+      <ScrollView
+        horizontal={true}
+        contentContainerStyle={StyleSheet.compose(styles.ChordContent)}
+      >
+        <Pressable>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/AChord.png")}
+            chord="A"
+          />
+        </Pressable>
+        <Chord
+          imgUri={require("../../assets/Images/Chords/AmChord.png")}
+          chord="Am"
+        />
+        <Chord
+          imgUri={require("../../assets/Images/Chords/CChord.png")}
+          chord="C"
+        />
+        <Chord
+          imgUri={require("../../assets/Images/Chords/DChord.png")}
+          chord="D"
+        />
+        <Chord
+          imgUri={require("../../assets/Images/Chords/EChord.png")}
+          chord="E"
+        />
+        <Chord
+          imgUri={require("../../assets/Images/Chords/EmChord.png")}
+          chord="Em"
+        />
+        <Chord
+          imgUri={require("../../assets/Images/Chords/GChord.png")}
+          chord="G"
+        />
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  centeredView: {
+  container: {
     flex: 1,
+    alignContent: "center",
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
+    backgroundColor: "rgb(40,40,40)",
   },
+  ChordContent: {
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  content: {
+    alignItems: "center",
+  },
+
   modalView: {
     margin: 20,
     backgroundColor: "white",

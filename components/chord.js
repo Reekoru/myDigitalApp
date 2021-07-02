@@ -5,14 +5,13 @@ import { RFValue } from "react-native-responsive-fontsize";
 export default class Chord extends Component {
   render() {
     return (
-      <View>
+      <View style={{ margin: 10 }}>
         <Text
           style={{
             color: "white",
             fontSize: RFValue(48),
             fontWeight: "bold",
             textAlign: "center",
-            margin: "20",
           }}
         >
           {/*Get title of image */}

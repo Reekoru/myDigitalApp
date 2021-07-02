@@ -1,7 +1,5 @@
 import Recording from "react-native-recording";
 import PitchFinder from "pitchfinder";
-import { NativeModules, NativeEventEmitter } from "react-native";
-import { PermissionsAndroid } from "react-native";
 
 export default class Tuner {
   middleA = 440;
@@ -28,10 +26,10 @@ export default class Tuner {
   }
 
   start() {
-    console.log("Initizing Recording", this.sampleRate, this.bufferSize);
+    console.log(Recording)
     Recording.init({
-      bufferSize: this.sampleRate,
-      sampleRate: this.bufferSize,
+      sampleRate: this.sampleRate,
+      bufferSize: this.bufferSize,
     });
     Recording.start();
     Recording.addRecordingEventListener((data) => {

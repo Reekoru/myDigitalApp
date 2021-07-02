@@ -1,93 +1,152 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Alert,
-  Modal,
-  StyleSheet,
   Text,
-  Pressable,
   View,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
   ScrollView,
 } from "react-native";
-import Orientation from "../../scripts/detectOrientation.js";
-import { RFValue } from "react-native-responsive-fontsize";
+import { Audio } from "expo-av";
 import Chord from "../../components/chord.js";
 
-export default function GChords() {
-  const [modalVisible, setModalVisible] = useState(true);
-  // Create a new object to get orientation of screen
-  const orientation = new Orientation();
-  const portrait = orientation.isPortr;
+export default function App() {
+  const [sound, setSound] = useState();
+
+  async function playAChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/a.wav")
+    );
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  async function playAmChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/am.wav")
+    );
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  async function playCChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/c.wav")
+    );
+    setSound(sound);
+    
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  async function playDChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/d.wav")
+    );
+    setSound(sound);
+    
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  async function playEChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/e.wav")
+    );
+    setSound(sound);
+    
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  async function playEmChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/em.wav")
+    );
+    setSound(sound);
+    
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  async function playGChord() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/g.wav")
+    );
+    setSound(sound);
+    
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>
-              Hi! In this section, we will learn the basic chords which can be
-              played in guitar. You will be able to use these chords to play
-              countless of popular songs!
-              {"\n"}
-              {"\n"}
-              Grab your guitar, read, play, review!
-              {"\n"}
-              LET'S DO IT!
-            </Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <Text
-        style={{ fontSize: RFValue(32), color: "white", textAlign: "center" }}
-      >
-        THE BASIC CHORDS
-      </Text>
       <ScrollView
         horizontal={true}
         contentContainerStyle={StyleSheet.compose(styles.ChordContent)}
       >
-        <Pressable>
+        <TouchableOpacity style={styles.chordTab} onPress={playAChord}>
           <Chord
             imgUri={require("../../assets/Images/Chords/AChord.png")}
             chord="A"
           />
-        </Pressable>
-        <Chord
-          imgUri={require("../../assets/Images/Chords/AmChord.png")}
-          chord="Am"
-        />
-        <Chord
-          imgUri={require("../../assets/Images/Chords/CChord.png")}
-          chord="C"
-        />
-        <Chord
-          imgUri={require("../../assets/Images/Chords/DChord.png")}
-          chord="D"
-        />
-        <Chord
-          imgUri={require("../../assets/Images/Chords/EChord.png")}
-          chord="E"
-        />
-        <Chord
-          imgUri={require("../../assets/Images/Chords/EmChord.png")}
-          chord="Em"
-        />
-        <Chord
-          imgUri={require("../../assets/Images/Chords/GChord.png")}
-          chord="G"
-        />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.chordTab} onPress={playAmChord}>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/AmChord.png")}
+            chord="Am"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.chordTab} onPress={playCChord}>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/CChord.png")}
+            chord="C"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.chordTab} onPress={playDChord}>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/DChord.png")}
+            chord="D"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.chordTab} onPress={playEChord}>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/EChord.png")}
+            chord="E"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.chordTab} onPress={playEmChord}>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/EmChord.png")}
+            chord="Em"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.chordTab} onPress={playGChord}>
+          <Chord
+            imgUri={require("../../assets/Images/Chords/GChord.png")}
+            chord="G"
+          />
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -100,9 +159,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgb(40,40,40)",
   },
+
+  chordTab: {
+    backgroundColor: "rgb(80,80,80)",
+    margin: 20,
+    borderRadius: 15,
+  },
+
   ChordContent: {
     justifyContent: "center",
     flexDirection: "row",
+    backgroundColor: "rgb(50,50,50)",
+    height: 300,
+    marginVertical: 20,
   },
   content: {
     alignItems: "center",

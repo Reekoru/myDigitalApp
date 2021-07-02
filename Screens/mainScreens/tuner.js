@@ -10,7 +10,7 @@ import Tuner from "../../scripts/tunerCode.js";
 import Note from "../../scripts/note.js";
 import Meter from "../../scripts/meter.js";
 
-export default class TunerScreen extends Component {
+export default class App extends Component {
   state = {
     note: {
       name: "A",
@@ -43,7 +43,7 @@ export default class TunerScreen extends Component {
 
   render() {
     return (
-      <View style={style.container}>
+      <View style={style.body}>
         <StatusBar backgroundColor="#000" translucent />
         <Meter cents={this.state.note.cents} />
         <Note {...this.state.note} />
@@ -56,11 +56,10 @@ export default class TunerScreen extends Component {
 }
 
 const style = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(50, 50, 50)",
   },
   frequency: {
     fontSize: 28,

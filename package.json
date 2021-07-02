@@ -13,6 +13,7 @@
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
     "expo": "~40.0.0",
+    "expo-av": "^9.1.2",
     "expo-status-bar": "~1.0.3",
     "i": "^0.3.6",
     "npm": "^7.14.0",
@@ -28,9 +29,11 @@
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.2",
     "react-native-sound": "^0.11.0",
+    "react-native-sound-player": "^0.10.9",
     "react-native-tone": "^0.0.4",
     "react-native-version-check-expo": "^3.4.2",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "react-tuner": "^1.0.0-alpha.2"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
